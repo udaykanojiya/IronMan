@@ -62,8 +62,9 @@ revealContainers.forEach(section => {
 // Canvas Preloader and Logic
 const canvas = document.getElementById('armor-canvas');
 const context = canvas.getContext('2d');
-const loadingScreen = document.getElementById('loading-screen');
-const loadProgressFill = document.getElementById('load-progress-fill');
+const globalLoader = document.getElementById('global-loader');
+const globalLoadFill = document.getElementById('global-load-fill');
+const loadPercentText = document.getElementById('load-percent');
 
 const frameCount = 100;
 const currentFrame = index => `assets/frames/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.png`;
@@ -90,38 +91,39 @@ for (let i = 0; i < frameCount; i++) {
 
     img.onload = () => {
         framesLoaded++;
-        const percent = (framesLoaded / frameCount) * 100;
-        loadProgressFill.style.width = percent + '%';
-
-        if (framesLoaded === frameCount) {
-            // Once complete, fade out the loader overlay
-            gsap.to(loadingScreen, {
-                opacity: 0,
-                duration: 0.6,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    loadingScreen.style.display = 'none';
-                    playHeroEntrance();
-                }
-            });
-            render();
-            setupScrollAnimation();
-            ScrollTrigger.refresh();
-        }
+        updateLoadingProgress();
     };
 
     img.onerror = () => {
         // Handle missing frames silently for continuous loading progress
         framesLoaded++;
-        if (framesLoaded === frameCount) {
-            gsap.to(loadingScreen, { opacity: 0, duration: 0.6, onComplete: () => { loadingScreen.style.display = 'none'; playHeroEntrance(); } });
-            render();
-            setupScrollAnimation();
-            ScrollTrigger.refresh();
-        }
+        updateLoadingProgress();
     };
 
     images.push(img);
+}
+
+function updateLoadingProgress() {
+    const percent = Math.round((framesLoaded / frameCount) * 100);
+    globalLoadFill.style.width = percent + '%';
+    loadPercentText.innerText = percent + '%';
+
+    if (framesLoaded === frameCount) {
+        // Once complete, fade out the loader overlay
+        setTimeout(() => {
+            document.body.classList.remove('no-scroll');
+            globalLoader.classList.add('fade-out');
+            
+            // Re-enable interactions after fade
+            setTimeout(() => {
+                globalLoader.style.display = 'none';
+                playHeroEntrance();
+                render();
+                setupScrollAnimation();
+                ScrollTrigger.refresh();
+            }, 800);
+        }, 500);
+    }
 }
 
 function resizeCanvas() {

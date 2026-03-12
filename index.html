@@ -13,7 +13,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="no-scroll">
+    <!-- Global Loading Screen -->
+    <div id="global-loader">
+        <div class="loader-content">
+            <div class="arc-reactor-wrapper">
+                <div class="arc-reactor">
+                    <div class="core"></div>
+                    <div class="rings">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-status">
+                <div class="loader-title">SYSTEM BOOT</div>
+                <div class="loader-subtitle">STARK INDUSTRIES PROTOCOL</div>
+                <div class="loader-bar-bg">
+                    <div class="loader-bar-fill" id="global-load-fill"></div>
+                </div>
+                <div class="loader-percentage" id="load-percent">0%</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="top-nav">
         <div class="nav-logo">
@@ -60,12 +84,7 @@
 
         <div class="canvas-container">
             <canvas id="armor-canvas"></canvas>
-            <div class="loading-frames" id="loading-screen">
-                <div class="loader-text">IRON MAN</div>
-                <div class="loader-bar-bg">
-                    <div class="loader-bar-fill" id="load-progress-fill"></div>
-                </div>
-            </div>
+
         </div>
     </section>
 
