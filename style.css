@@ -1,0 +1,957 @@
+:root {
+    /* New Luxury Dark Palette */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-card: #161616;
+    --accent-red: #e8000d;
+    --accent-red-dim: rgba(232, 0, 13, 0.15);
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --border: rgba(255, 255, 255, 0.07);
+    --glow-red: rgba(232, 0, 13, 0.35);
+
+    /* Typography */
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+    /* Hide default for custom editorial cursor */
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    overflow-x: hidden;
+}
+
+/* --------------------------------------
+   CUSTOM CURSOR
+   -------------------------------------- */
+#reactor-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+#reactor-cursor.hovering {
+    width: 48px;
+    height: 48px;
+    border-color: #ffffff;
+}
+
+#reactor-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background-color: var(--accent-red);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+}
+
+/* --------------------------------------
+   SCROLL PROGRESS
+   -------------------------------------- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-red);
+    z-index: 10000;
+}
+
+/* --------------------------------------
+   TYPOGRAPHY & UTILITIES
+   -------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    text-transform: none;
+    /* Let Syne do the work */
+}
+
+.body-text {
+    font-size: 16px;
+}
+
+/* --------------------------------------
+   NAVIGATION
+   -------------------------------------- */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    z-index: 100;
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-red);
+    border-radius: 50%;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    padding: 6px 20px;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.btn-cta,
+.btn-primary {
+    background-color: var(--accent-red);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-cta:hover,
+.btn-primary:hover {
+    background-color: #c0000b;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* --------------------------------------
+   GLOBAL CARD COMPONENT
+   -------------------------------------- */
+.base-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    transition: all 0.3s ease;
+}
+
+.base-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.card-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent-red);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.card-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: #777;
+    line-height: 1.7;
+}
+
+/* --------------------------------------
+   SECTIONS ALTERNATING BGS
+   -------------------------------------- */
+section {
+    position: relative;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+}
+
+section:nth-child(even) {
+    background-color: var(--bg-secondary);
+}
+
+/* --------------------------------------
+   1. HERO & ASSEMBLY
+   -------------------------------------- */
+#armor-assembly {
+    display: block;
+    height: 100vh; /* Fixed height to match viewport */
+    background-color: var(--bg-primary);
+    padding-top: 60px;
+    overflow: hidden;
+}
+
+.hero-organic-blob {
+    position: absolute;
+    top: 50px;
+    right: -10vw;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle at center, rgba(232, 0, 13, 0.6) 0%, rgba(232, 0, 13, 0.1) 40%, transparent 70%);
+    filter: blur(80px);
+    z-index: 1;
+    animation: blobBreathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes blobBreathe {
+    0% {
+        transform: scale(1) translateY(0);
+        filter: hue-rotate(0deg) blur(80px);
+    }
+
+    100% {
+        transform: scale(1.06) translateY(20px);
+        filter: hue-rotate(15deg) blur(100px);
+    }
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 10%;
+    left: 6vw;
+    z-index: 5;
+    max-width: 600px;
+}
+
+.cinematic-title {
+    font-size: clamp(56px, 9vw, 120px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+}
+
+.cinematic-subtitle {
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--accent-red);
+    margin-top: -10px;
+}
+
+.hero-subtext {
+    font-size: 17px;
+    margin-top: 24px;
+    max-width: 420px;
+}
+
+.hero-buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+}
+
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+    padding: 14px 32px;
+    font-size: 14px;
+}
+
+.hero-stats {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 60px;
+    display: flex;
+    gap: 12px;
+}
+
+.stat-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #666;
+}
+
+.canvas-container {
+    height: calc(100vh - 60px); /* Fill remaining viewport height */
+    width: 100vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Smooth fade on left and right edges */
+.canvas-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, var(--bg-primary) 0%, rgba(10, 10, 10, 0.8) 15%, transparent 35%, transparent 65%, rgba(10, 10, 10, 0.8) 85%, var(--bg-primary) 100%),
+        linear-gradient(180deg, var(--bg-primary) 0%, rgba(10, 10, 10, 0.5) 5%, transparent 20%, transparent 80%, rgba(10, 10, 10, 0.6) 90%, var(--bg-primary) 100%);
+}
+
+#armor-canvas {
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+/* Loader */
+.loading-frames {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.loader-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: var(--text-primary);
+}
+
+.loader-bar-bg {
+    width: 120px;
+    height: 1px;
+    background: #222;
+    overflow: hidden;
+}
+
+.loader-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-red);
+    transition: width 0.1s linear;
+}
+
+/* --------------------------------------
+   3. TONY STARK SECTION
+   -------------------------------------- */
+#tony-stark {
+    background-color: var(--bg-secondary);
+}
+
+.stark-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+.stark-stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stark-stats-col .bio-text {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.stark-stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stat-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 64px;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 0.12em;
+    margin-top: 8px;
+}
+
+.stat-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin: 0;
+}
+
+.stark-bio-col p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.stark-photo-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.stark-image-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 420px;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+}
+
+.stark-image-wrapper:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 50px 120px -30px rgba(232, 0, 13, 0.2);
+}
+
+.stark-img {
+    width: 100%;
+    height: auto; /* Avoid forced height to prevent cropping */
+    display: block;
+    filter: grayscale(100%) brightness(0.8);
+    transition: filter 0.6s ease, transform 0.8s ease;
+}
+
+.stark-image-wrapper:hover .stark-img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.05);
+}
+
+.img-red-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+}
+
+/* --------------------------------------
+   4. ORIGIN TIMELINE
+   -------------------------------------- */
+#origin-story {
+    background-color: var(--bg-primary);
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    width: 50%;
+    padding-right: 3rem;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: auto;
+    padding-right: 0;
+    padding-left: 3rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 30px;
+    right: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-red);
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    right: auto;
+    left: -3px;
+}
+
+/* --------------------------------------
+   5. ARMOR TECHNOLOGY
+   -------------------------------------- */
+#armor-technology {
+    background-color: var(--bg-secondary);
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.tech-card {
+    text-align: left;
+}
+
+.icon-wrap {
+    color: var(--accent-red);
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.tech-card:hover .icon-wrap {
+    color: var(--text-primary);
+}
+
+/* --------------------------------------
+   6. AVENGERS ERA
+   -------------------------------------- */
+#avengers-era {
+    background-color: var(--bg-primary);
+    position: relative;
+}
+
+.era-red-glow {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle at center, rgba(232, 0, 13, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.thanos-callout {
+    max-width: 800px;
+    margin: 0 auto;
+    border-left: 3px solid var(--accent-red);
+}
+
+.avengers-header {
+    margin-bottom: 24px;
+}
+
+.role-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent-red);
+    letter-spacing: 0.12em;
+}
+
+.character-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.callout-quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--text-primary);
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+/* --------------------------------------
+   7. HALL OF ARMOR
+   -------------------------------------- */
+#armor-evolution {
+    background-color: var(--bg-secondary);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.armor-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.display-chamber {
+    height: 320px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+}
+
+.display-chamber::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, 
+        rgba(0, 242, 255, 0.4) 0%, 
+        rgba(0, 242, 255, 0.1) 40%, 
+        transparent 75%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Enhanced tech scanning lines */
+.display-chamber::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(0, 242, 255, 0.05) 45%, 
+        rgba(0, 242, 255, 0.2) 50%, 
+        rgba(0, 242, 255, 0.05) 55%, 
+        transparent 100%);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.armor-card:hover .display-chamber::after {
+    opacity: 1;
+    animation: intenseGlow 1.5s infinite alternate ease-in-out;
+}
+
+.armor-card:hover .display-chamber::before {
+    opacity: 1;
+    animation: scanLine 2.5s linear infinite;
+}
+
+@keyframes intenseGlow {
+    0% { transform: scale(0.9); opacity: 0.3; filter: brightness(1); }
+    100% { transform: scale(1.2); opacity: 0.6; filter: brightness(1.5); }
+}
+
+@keyframes scanLine {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+.display-chamber img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.armor-card:hover .display-chamber img {
+    transform: scale(1.05);
+}
+
+.armor-info {
+    padding: 24px;
+}
+
+.badge-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.year-badge,
+.cap-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+}
+
+.year-badge {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cap-tag {
+    color: #666;
+    border: 1px solid transparent;
+}
+
+/* --------------------------------------
+   8. LEGACY FINAL
+   -------------------------------------- */
+#final-reveal {
+    background-color: var(--bg-primary);
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.final-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle at center, rgba(232, 0, 13, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.final-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cinematic-quote {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.legacy-text {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: #666;
+    margin-top: 1rem;
+}
+
+/* --------------------------------------
+   GSAP REVEALS
+   -------------------------------------- */
+/* Handled completely in JS now. Elements just start hidden if JS dictates. */
+
+/* --------------------------------------
+   RESPONSIVE (Max 1024px)
+   -------------------------------------- */
+@media (max-width: 1024px) {
+    .stark-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .stark-photo-col {
+        order: -1;
+        align-items: center;
+        margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-organic-blob {
+        right: -20vw;
+        width: 80vw;
+        height: 80vw;
+    }
+}
+
+/* --------------------------------------
+   RESPONSIVE (Max 768px)
+   -------------------------------------- */
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 1.5rem;
+    }
+
+    #reactor-cursor,
+    #reactor-cursor-dot {
+        display: none !important;
+    }
+
+    body,
+    * {
+        cursor: auto !important;
+    }
+
+    .hero-content {
+        left: 50%;
+        bottom: 12%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    .hero-subtext {
+        margin: 24px auto 0;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        padding-left: 50px !important;
+        padding-right: 0 !important;
+        margin-left: 0;
+    }
+
+    .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 17px !important;
+        right: auto;
+    }
+
+    .tech-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* Hide links on mobile for cleanliness */
+}
+
+/* --------------------------------------
+   RESPONSIVE (Max 480px)
+   -------------------------------------- */
+@media (max-width: 480px) {
+    .hero-organic-blob {
+        right: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vw;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hero-buttons button {
+        width: 100%;
+        padding: 16px !important;
+    }
+
+    .hero-stats {
+        display: none;
+    }
+
+    /* Hide stat pills on smallest screens */
+
+    .display-chamber {
+        height: 260px;
+    }
+
+    .cinematic-title {
+        font-size: clamp(48px, 12vw, 64px);
+    }
+
+    .cinematic-subtitle {
+        font-size: clamp(32px, 8vw, 48px);
+    }
+
+    .top-nav {
+        padding: 1rem;
+    }
+}

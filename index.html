@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Man & Suit — Cinematic Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <div class="nav-logo">
+            <span class="logo-dot"></span>IRON MAN
+        </div>
+        <div class="nav-links">
+            <a href="#armor-assembly">THE SUIT</a>
+            <a href="#tony-stark">THE MAN</a>
+            <a href="#armor-evolution">ARCHIVE</a>
+        </div>
+    </nav>
+
+    <!-- Custom Cursor -->
+    <div id="reactor-cursor"></div>
+    <div id="reactor-cursor-dot"></div>
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress"></div>
+
+    <!-- 1. Hero & Armor Assembly Canvas -->
+    <section id="armor-assembly">
+        <div class="hero-organic-blob"></div>
+
+        <div class="hero-content" id="hero-heading">
+            <h1 class="cinematic-title">IRON MAN</h1>
+            <h2 class="cinematic-subtitle">& THE SUIT</h2>
+            <p class="hero-subtext">The story of Tony Stark — genius, hero, legend.</p>
+
+            <div class="hero-buttons">
+                <button class="btn-primary"
+                    onclick="document.getElementById('armor-evolution').scrollIntoView({behavior: 'smooth'})">EXPLORE
+                    THE ARCHIVE</button>
+                <button class="btn-secondary"
+                    onclick="document.getElementById('armor-technology').scrollIntoView({behavior: 'smooth'})">VIEW
+                    SCHEMATICS</button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-pill">85+ Suits Built</div>
+                <div class="stat-pill">IQ 270+</div>
+                <div class="stat-pill">Avenger Since 2012</div>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="armor-canvas"></canvas>
+            <div class="loading-frames" id="loading-screen">
+                <div class="loader-text">IRON MAN</div>
+                <div class="loader-bar-bg">
+                    <div class="loader-bar-fill" id="load-progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Who Is Tony Stark -->
+    <section id="tony-stark">
+        <div class="container section-reveal">
+            <h2 class="section-title">SUBJECT FILE: TONY STARK</h2>
+            <div class="stark-layout">
+                <div class="stark-stats-col">
+                    <div class="stat-block">
+                        <span class="stat-num">270+</span>
+                        <span class="stat-label">IQ LEVEL</span>
+                    </div>
+                    <hr class="stat-divider">
+                    <div class="stat-block">
+                        <span class="stat-num">85+</span>
+                        <span class="stat-label">SUITS BUILT</span>
+                    </div>
+                    <hr class="stat-divider">
+                    <div class="stat-block">
+                        <span class="stat-num">3</span>
+                        <span class="stat-label">AVENGERS MISSIONS</span>
+                    </div>
+                    <div class="bio-text">
+                        <p class="body-text">Billionaire, genius, playboy, philanthropist. Former CEO of Stark
+                            Industries. Inheriting his father's company, he transformed it into the world's leading
+                            weapons manufacturer before a life-altering experience fundamentally shifted his worldview.
+                        </p>
+                    </div>
+                </div>
+                <div class="stark-photo-col">
+                    <div class="stark-image-wrapper">
+                        <img src="assets/images/tony.jpg" alt="Tony Stark" class="stark-img"
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'600\' viewBox=\'0 0 400 600\'><rect width=\'400\' height=\'600\' fill=\'%23111\'/></svg>'">
+                        <div class="img-red-gradient"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Origin Story Timeline -->
+    <section id="origin-story">
+        <div class="container">
+            <h2 class="section-title section-reveal">THE FORGE</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content base-card">
+                        <div class="card-label">EVENT 01</div>
+                        <h3 class="card-title">GENIUS INVENTOR</h3>
+                        <p class="card-body">Leading Stark Industries weapons development program globally.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content base-card">
+                        <div class="card-label">EVENT 02</div>
+                        <h3 class="card-title">KIDNAPPED</h3>
+                        <p class="card-body">Ambushed in Afghanistan and held captive by the Ten Rings.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content base-card">
+                        <div class="card-label">EVENT 03</div>
+                        <h3 class="card-title">MARK I CREATED</h3>
+                        <p class="card-body">Built a miniaturized Arc Reactor and armored suit in secret to survive.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content base-card">
+                        <div class="card-label">EVENT 04</div>
+                        <h3 class="card-title">ESCAPE</h3>
+                        <p class="card-body">Fought his way out, destroying his captors' weapons cache.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content base-card">
+                        <div class="card-label">EVENT 05</div>
+                        <h3 class="card-title">TRANSFORMATION</h3>
+                        <p class="card-body">Returned home to shut down the weapons division and refine the Iron Man
+                            armor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Armor Technology Section -->
+    <section id="armor-technology">
+        <div class="container">
+            <h2 class="section-title section-reveal">PROPRIETARY TECH</h2>
+            <div class="tech-grid">
+                <div class="tech-card base-card">
+                    <div class="card-label">• CORE</div>
+                    <div class="icon-wrap">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <circle cx="12" cy="12" r="4" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ARC REACTOR</h3>
+                    <p class="card-body">Clean, sustained energy source. Powers both the suit and the electromagnet
+                        keeping Stark alive.</p>
+                </div>
+                <div class="tech-card base-card">
+                    <div class="card-label">• WEAPONRY</div>
+                    <div class="icon-wrap">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="8" />
+                            <path d="M12 2v2m0 16v2M2 12h2m16 0h2" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">REPULSOR TECH</h3>
+                    <p class="card-body">Particle beam weapon and flight stabilizer integrated into the armor's
+                        gauntlets.</p>
+                </div>
+                <div class="tech-card base-card">
+                    <div class="card-label">• MOBILITY</div>
+                    <div class="icon-wrap">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2L2 22l10-4 10 4L12 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">FLIGHT SYSTEMS</h3>
+                    <p class="card-body">Supersonic propulsion featuring automated stabilization and maneuvering flaps.
+                    </p>
+                </div>
+                <div class="tech-card base-card">
+                    <div class="card-label">• SOFTWARE</div>
+                    <div class="icon-wrap">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2" />
+                            <path d="M8 12h8M12 8v8" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">AI ASSISTANTS</h3>
+                    <p class="card-body">Advanced artificial intelligence for real-time combat analysis and suit
+                        maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Avengers Era -->
+    <section id="avengers-era">
+        <div class="era-red-glow"></div>
+        <div class="container section-reveal">
+            <h2 class="section-title">THE AVENGERS INITIATIVE</h2>
+            <div class="thanos-callout base-card">
+                <div class="avengers-header">
+                    <span class="role-label">LEAD ENGINEER</span>
+                    <h2 class="character-name">TONY STARK</h2>
+                </div>
+                <p class="callout-quote">"And I... am... Iron Man."</p>
+                <p class="card-body mt-4">Earth's best defender. From the Battle of New York to the final stand against
+                    Thanos, the armor evolved to face increasingly cosmic threats.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Armor Evolution Gallery -->
+    <section id="armor-evolution">
+        <div class="container">
+            <h2 class="section-title section-reveal">THE HALL OF ARMOR</h2>
+            <div class="gallery-grid">
+                <!-- Mark I -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark1.webp" alt="Mark I"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK I</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2008</span>
+                            <span class="cap-tag">PROTOTYPE</span>
+                        </div>
+                        <p class="card-body">Original scrap metal armor, flamethrowers, limited flight capability.</p>
+                    </div>
+                </div>
+                <!-- Mark II -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark2.webp" alt="Mark II"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK II</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2008</span>
+                            <span class="cap-tag">FLIGHT</span>
+                        </div>
+                        <p class="card-body">First refined flight suit prototype. Unpainted steel finish, icing problem.
+                        </p>
+                    </div>
+                </div>
+                <!-- Mark III -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark3.webp" alt="Mark III"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK III</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2008</span>
+                            <span class="cap-tag">COMBAT</span>
+                        </div>
+                        <p class="card-body">Gold-titanium alloy to solve high altitude icing. Integrated weapons
+                            system.</p>
+                    </div>
+                </div>
+                <!-- Mark IV -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark4.webp" alt="Mark IV"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK IV</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2010</span>
+                            <span class="cap-tag">UPGRADE</span>
+                        </div>
+                        <p class="card-body">Replacement for damaged Mark III. Manual helmet removal capability.</p>
+                    </div>
+                </div>
+                <!-- Mark V -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark5.webp" alt="Mark V"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK V</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2010</span>
+                            <span class="cap-tag">PORTABLE</span>
+                        </div>
+                        <p class="card-body">Portable emergency response armor. Foldable into a standard briefcase.</p>
+                    </div>
+                </div>
+                <!-- Mark VI -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark6.webp" alt="Mark VI"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK VI</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2010</span>
+                            <span class="cap-tag">VIBRANIUM</span>
+                        </div>
+                        <p class="card-body">Triangular chestplate, powered by a vibranium core arc reactor for highly
+                            enhanced energy output.</p>
+                    </div>
+                </div>
+                <!-- Mark VII -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark7.webp" alt="Mark VII"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK VII</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2012</span>
+                            <span class="cap-tag">POD</span>
+                        </div>
+                        <p class="card-body">Laser-guided rapid deployment pod. Enhanced thrusters and micro-munitions.
+                        </p>
+                    </div>
+                </div>
+                <!-- Mark VIII -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/mark8.png" alt="Mark VIII"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK VIII</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2012</span>
+                            <span class="cap-tag">LEGION</span>
+                        </div>
+                        <p class="card-body">Iron Legion prototype. Enhanced protective plating and fully modular
+                            weaponry integration.</p>
+                    </div>
+                </div>
+                <!-- Mark XLI -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/markxli.webp" alt="Mark XLI Bones"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK XLI (BONES)</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2013</span>
+                            <span class="cap-tag">MODULAR</span>
+                        </div>
+                        <p class="card-body">Skeleton suit. Features detachable limbs capable of independent flight and
+                            combat coordination.</p>
+                    </div>
+                </div>
+                <!-- Mark XLIV -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/markxliv.webp" alt="Mark XLIV Hulkbuster"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK XLIV </h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2015</span>
+                            <span class="cap-tag">HULKBUSTER</span>
+                        </div>
+                        <p class="card-body">Heavy-duty modular armor deployed from orbital platform VERONICA. Designed
+                            specifically for extreme threat suppression.</p>
+                    </div>
+                </div>
+                <!-- Mark XLVIII -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/markxlviii.webp" alt="Mark XLVIII"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK XLVIII</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2018</span>
+                            <span class="cap-tag">STREAMLINED</span>
+                        </div>
+                        <p class="card-body">Pre-nanotech armor streamlining integration of external massive
+                            single-thruster packages for space deployment.</p>
+                    </div>
+                </div>
+                <!-- Mark LXXXV -->
+                <div class="armor-card base-card">
+                    <div class="display-chamber">
+                        <img src="assets/images/marklxxxv.webp" alt="Mark LXXXV"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'><rect width=\'300\' height=\'400\' fill=\'%23111\'/></svg>'">
+                    </div>
+                    <div class="armor-info">
+                        <h3 class="card-title">MARK LXXXV</h3>
+                        <div class="badge-row">
+                            <span class="year-badge">2023</span>
+                            <span class="cap-tag">NANOTECH</span>
+                        </div>
+                        <p class="card-body">The ultimate advanced nanotech suit. Features an energy refocuser on the
+                            back and unparalled structural durability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Legacy & Final Reveal -->
+    <section id="final-reveal">
+        <div class="final-glow"></div>
+        <div class="container final-content">
+            <h1 class="cinematic-quote section-reveal">I AM IRON MAN</h1>
+            <p class="legacy-text section-reveal">May 29, 1970 — October 22, 2023</p>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
